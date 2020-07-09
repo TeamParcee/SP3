@@ -24,3 +24,35 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ion-split-pane{
+    --side-max-width: 100px;
+}
+
+ion-grid{
+    --ion-grid-column-padding:        5px;
+
+--ion-grid-column-padding-xs:     5px;
+--ion-grid-column-padding-sm:     5px;
+--ion-grid-column-padding-md:     5px;
+--ion-grid-column-padding-lg:     10px;
+--ion-grid-column-padding-xl:     10px;
+}
+
+.list-header{
+    font-size: 20px;
+}
+
+.search-bar-container{
+    max-width: 700px;
+    margin: auto;
+}
+
+.skeleton-text{
+    height: 20px;;
+}

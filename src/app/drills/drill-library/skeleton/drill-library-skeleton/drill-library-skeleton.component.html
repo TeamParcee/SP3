@@ -1,0 +1,16 @@
+<ion-row class="title-row">
+  <ion-col>
+    <ion-skeleton-text class="skeleton-header"></ion-skeleton-text>
+  </ion-col>
+</ion-row>
+
+<ion-row>
+  <ion-col *ngFor="let e of skeletonArray" size-xs="12" size-sm="6" size-md="4" size-xl="3">
+    <ion-skeleton-text animated class="card-skeleton-video"></ion-skeleton-text>
+    <div class="title-container">
+      <ion-skeleton-text animated class="card-avatar-skeleton"></ion-skeleton-text>
+      <ion-skeleton-text animiated class="card-skeleton-label"></ion-skeleton-text>
+    </div>
+    <ion-skeleton-text animiated class="card-skeleton-label"></ion-skeleton-text>
+  </ion-col>
+</ion-row>

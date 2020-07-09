@@ -1,3 +1,42 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane [disabled]="showMenu" [when]="showMenu" id="splitPane" contentId="main">
+    <!--  the side menu  -->
+    <ion-menu contentId="main">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Sports Planner</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+
+        <ion-list>
+          <ion-item (click)="closeMenu()" routerLink="home">
+            <ion-icon slot="end" name="calendar-outline"></ion-icon>
+            Home
+          </ion-item>
+          <ion-item (click)="closeMenu()" routerLink="drills">
+            <ion-icon name="clipboard-outline" slot="end"></ion-icon>
+            Drill Library
+          </ion-item>
+          <ion-item (click)="closeMenu()" routerLink="plans">
+            <ion-icon name="albums-outline" slot="end"></ion-icon>
+            Plans Library
+          </ion-item>
+          <ion-item (click)="closeMenu()" routerLink="profile">
+            Profile
+            <ion-icon slot="end" name="person-outline">
+            </ion-icon>
+          </ion-item>
+          <ion-item (click)="closeMenu()" routerLink="settings">
+            Settings
+            <ion-icon slot="end" name="settings-outline">
+            </ion-icon>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+    <!-- the main content -->
+    <ion-router-outlet id="main"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

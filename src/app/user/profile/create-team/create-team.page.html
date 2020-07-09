@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create Team</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-grid *ngIf="step == '1'" fixed>
+    <ion-row>
+      <ion-col>
+        <div class="header-label">What is your sport?</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="updateStep('2', 'football')" fill="clear">Football</ion-button>
+        <ion-button (click)="updateStep('2', 'basketball')" fill="clear">Basketball</ion-button>
+        <ion-button (click)="updateStep('2', 'volleyball')" fill="clear">Volleyball</ion-button>
+        <ion-button (click)="updateStep('2', 'baseball')" fill="clear">Baseball</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="step == '2'" fixed>
+    <ion-row>
+      <ion-col>
+        <div class="header-label">What is the passcode for your team?</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="updateStep('3b1', null)" fill="clear">Back</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="user.teamCode" placeholder="Team Passcode"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="save()" fill="clear">Complete</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

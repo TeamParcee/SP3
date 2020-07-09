@@ -1,0 +1,199 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/drills"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ (!drill.id) ? "New Drill" : ( (!readonly) ? "Edit Drill" : "View Drill") }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="!drill.id || readonly == false" [disabled]="name.invalid" (click)="save()">
+        <ion-icon name="save-outline"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="drill.id && readonly" (click)="readonly = false">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="drill.id && !readonly" (click)="deleteDrill()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid fixed>
+
+    <div (click)="getVideo()" *ngIf="!drill?.videoUrl" class="video-background">
+      <ion-icon class="video-icon" name="videocam-outline"></ion-icon>
+    </div>
+
+
+
+
+
+    <iframe *ngIf="trustedVideoUrl" class="video-player" class="video-background" [src]="trustedVideoUrl">
+    </iframe>
+
+    <ion-button *ngIf="drill.videoUrl && readonly == false" fill="clear" (click)="getVideo()">Change Video</ion-button>
+
+    <ion-list>
+      <ion-item [lines]="(readonly) ? 'none' : 'full'" class="name-field">
+        <ion-input [readonly]=readonly #name="ngModel" required [(ngModel)]="drill.name" placeholder="Name"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!readonly">
+        <ion-label>
+          Public Drill
+          <p class="ion-text-wrap" style="padding-right: 40px">If this drill is public other coaches can see it and add it to their Practice Plans</p>
+        </ion-label>
+        <ion-checkbox [(ngModel)]="drill.public"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+
+
+    <ion-segment (ionChange)="updateView($event)" value='description'>
+      <ion-segment-button value='description'>
+        Description
+      </ion-segment-button>
+      <ion-segment-button value='coachingPoints'>
+        Coaching Points
+      </ion-segment-button>
+      <ion-segment-button value='notes'>
+        Notes
+      </ion-segment-button>
+    </ion-segment>
+
+    <div class="edit-content" *ngIf="!readonly">
+      <div class="container" *ngIf="view == 'description'">
+        <div class="container-label"> Description</div>
+        <quill-editor [(ngModel)]="drill.description">
+          <div quill-editor-toolbar>
+            <span class="ql-formats">
+              <button class="ql-bold" [title]="'Bold'"></button>
+            </span>
+            <span class="ql-formats">
+              <select class="ql-align" [title]="'Aligment'">
+                <option selected></option>
+                <option value="center"></option>
+                <option value="right"></option>
+                <option value="justify"></option>
+              </select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-list" value="ordered"></button>
+              <button class="ql-list" value="bullet"></button>
+              <select class="ql-align">
+                <option selected></option>
+                <option value="center"></option>
+                <option value="right"></option>
+                <option value="justify"></option>
+              </select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-link"></button>
+              <button class="ql-image"></button>
+            </span>
+
+            <span class="ql-formats">
+              <select class="ql-size">
+                <option value="small"></option>
+                <option selected></option>
+                <option value="large"></option>
+              </select>
+            </span>
+          </div>
+        </quill-editor>
+      </div>
+
+      <div class="container" *ngIf="view == 'coachingPoints'">
+        <div class="container-label">Coaching Points</div>
+        <quill-editor [(ngModel)]="drill.coachingPoints">
+          <div quill-editor-toolbar>
+            <span class="ql-formats">
+              <button class="ql-bold" [title]="'Bold'"></button>
+            </span>
+            <span class="ql-formats">
+              <select class="ql-align" [title]="'Aligment'">
+                <option selected></option>
+                <option value="center"></option>
+                <option value="right"></option>
+                <option value="justify"></option>
+              </select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-list" value="ordered"></button>
+              <button class="ql-list" value="bullet"></button>
+              <select class="ql-align">
+                <option selected></option>
+                <option value="center"></option>
+                <option value="right"></option>
+                <option value="justify"></option>
+              </select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-link"></button>
+              <button class="ql-image"></button>
+            </span>
+
+            <span class="ql-formats">
+              <select class="ql-size">
+                <option value="small"></option>
+                <option selected></option>
+                <option value="large"></option>
+              </select>
+            </span>
+          </div>
+        </quill-editor>
+
+      </div>
+
+      <div class="container" *ngIf="view == 'notes'">
+        <div class="container-label">Notes</div>
+        <quill-editor [(ngModel)]="drill.notes">
+          <div quill-editor-toolbar>
+            <span class="ql-formats">
+              <button class="ql-bold" [title]="'Bold'"></button>
+            </span>
+            <span class="ql-formats">
+              <select class="ql-align" [title]="'Aligment'">
+                <option selected></option>
+                <option value="center"></option>
+                <option value="right"></option>
+                <option value="justify"></option>
+              </select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-list" value="ordered"></button>
+              <button class="ql-list" value="bullet"></button>
+              <select class="ql-align">
+                <option selected></option>
+                <option value="center"></option>
+                <option value="right"></option>
+                <option value="justify"></option>
+              </select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-link"></button>
+              <button class="ql-image"></button>
+            </span>
+
+            <span class="ql-formats">
+              <select class="ql-size">
+                <option value="small"></option>
+                <option selected></option>
+                <option value="large"></option>
+              </select>
+            </span>
+          </div>
+        </quill-editor>
+      </div>
+    </div>
+
+
+
+    <div class="view-content" *ngIf="readonly">
+      <div [innerHTML]="drill.description" *ngIf="view == 'description'"></div>
+      <div [innerHTML]="drill?.coachingPoints" *ngIf="view == 'coachingPoints'"></div>
+      <div [innerHTML]="drill?.notes" *ngIf="view == 'notes'"></div>
+    </div>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,17 @@
+.loading-poster{
+    height: 200px;
+}
+
+.youtube-form{
+    padding: 25px;
+    width: 80%;
+    margin: auto;
+}
+
+.uploadVideoBtn{
+    cursor: pointer;
+    &:hover{
+        border-bottom: 1px solid black;
+    }
+}
+

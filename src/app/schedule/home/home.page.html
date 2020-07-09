@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addEvent()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <div class="search-bar-container">
+          <ion-searchbar></ion-searchbar>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-segment (ionChange)="updateView($event)" value="upcoming">
+          <ion-segment-button value="upcoming">
+            Upcoming
+          </ion-segment-button>
+          <ion-segment-button value="past">
+            Past
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list lines="full">
+          <ion-list-header class="list-header">
+            <ion-skeleton-text class="skeleton-text"></ion-skeleton-text>
+          </ion-list-header>
+          <ion-item *ngFor="let e of skeleton">
+            <ion-thumbnail slot="start">
+              <ion-skeleton-text></ion-skeleton-text>
+            </ion-thumbnail>
+            <ion-label>
+              <ion-row>
+                <ion-col>
+                  <ion-skeleton-text class="skeleton-text"></ion-skeleton-text>
+                  <ion-skeleton-text class="skeleton-text"></ion-skeleton-text>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-skeleton-text class="skeleton-text"></ion-skeleton-text>
+                </ion-col>
+                <ion-col>
+                  <ion-skeleton-text class="skeleton-text"></ion-skeleton-text>
+                </ion-col>
+                <ion-col>
+                  <ion-skeleton-text class="skeleton-text"></ion-skeleton-text>
+                </ion-col>
+              </ion-row>
+
+            </ion-label>
+
+
+          </ion-item>
+        </ion-list>
+
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button *ngIf="!hideMenu"></app-menu-button>
+      <ion-button *ngIf="hideMenu">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Plans Library</ion-title>
+    <ion-buttons *ngIf="!hideMenu" slot="end">
+      <ion-button (click)="addPlan()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid fixed class="plans-container">
+
+    <ion-row>
+      <ion-col>
+        <div class="search-bar-container">
+          <ion-searchbar></ion-searchbar>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-segment value="my">
+          <ion-segment-button value="my">My Plans</ion-segment-button>
+          <ion-segment-button value="public">Public Plans</ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+
+    <app-skeleton-plans-library></app-skeleton-plans-library>
+  </ion-grid>
+
+
+</ion-content>

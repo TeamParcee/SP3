@@ -1,0 +1,30 @@
+.photo-container{
+    display: flex;
+    justify-content: center;
+    ion-avatar{
+        height: 150px;
+        width: 150px;
+    }
+    ion-button{
+        font-size: 30px;
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        // right: 0;
+    }
+    .image-container{
+        display: relative;
+    }
+}
+
+.camera-btn{
+    font-size: 24px;
+    position: absolute;
+    bottom: 0;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+    ion-icon{
+        font-size: 35px;
+    }
+}

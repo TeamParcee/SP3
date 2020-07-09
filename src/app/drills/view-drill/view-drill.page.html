@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cone Drill</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="!drill?.video" class="video-background">
+    <ion-icon class="video-icon" name="videocam-outline"></ion-icon>
+  </div>
+
+
+  <video *ngIf="drill?.video" autoplay="true" id="my-player" class="video-js" controls preload="auto">
+    <source src="https:////vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a
+      web browser that
+      <a href="http://videojs.com/html5-video-support/" target="_blank">
+        supports HTML5 video
+      </a>
+    </p>
+  </video>
+
+  <ion-segment (ionChange)="updateView($event)" value='description'>
+    <ion-segment-button value='description'>
+      Description
+    </ion-segment-button>
+    <ion-segment-button value='coachingPoints'>
+      Coaching Points
+    </ion-segment-button>
+    <ion-segment-button value='notes'>
+      Notes
+    </ion-segment-button>
+  </ion-segment>
+</ion-content>

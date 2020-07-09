@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Sports Planner</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-login (updateView)="updateView($event)" *ngIf="view == 'login'"></app-login>
+  <app-register (updateView)="updateView($event)" *ngIf="view == 'register'"></app-register>
+</ion-content>

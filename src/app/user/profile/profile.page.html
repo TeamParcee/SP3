@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <app-skeleton-profile *ngIf="showSkeleton"></app-skeleton-profile>
+
+  <ion-grid *ngIf="user && originalUser && coach">
+    <ion-row>
+      <ion-col>
+        <div class="ion-text-center photo-container">
+          <div class="image-container">
+            <ion-avatar>
+              <img *ngIf="!imagePreview" [src]="user.photoUrl">
+              <img *ngIf="imagePreview" [src]="imagePreview">
+            </ion-avatar>
+            <label class="camera-btn" for="profile-pic">
+              <ion-icon name="camera"></ion-icon>
+            </label>
+            <input [(ngModel)]="imageInput" (change)="cropImage($event)" style="display: none;" accept="image/*"
+              type="file" id="profile-pic">
+          </div>
+          <div *ngIf="imagePreview" class="save-image-container">
+            <ion-button (click)="cancelImage()" fill="clear" size="small" color="danger">Cancel</ion-button>
+            <ion-button (click)="saveImage()" fill="clear" size="small" color="success">Save</ion-button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-list-header class="list-header">
+        User Information
+      </ion-list-header>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list lines="full">
+          <ion-item>
+            <ion-icon slot="start" name="person"></ion-icon>
+            <ion-input placeholder="First Name" [(ngModel)]="user.fname" [readonly]="!isCurrentUser"></ion-input>
+            <ion-button (click)="updateFname()" *ngIf="originalUser.fname != user.fname" size="small" fill="clear"
+              color="success">save</ion-button>
+          </ion-item>
+          <ion-item>
+            <ion-icon slot="start" name="person"></ion-icon>
+            <ion-input placeholder="Last Name" [(ngModel)]="user.lname" [readonly]="!isCurrentUser"></ion-input>
+            <ion-button (click)="updateLname()" *ngIf="originalUser.lname != user.lname" size="small" fill="clear"
+              color="success">save</ion-button>
+          </ion-item>
+          <ion-item>
+            <ion-icon slot="start" name="mail"></ion-icon>
+            <ion-input placeholder="Email Address" [(ngModel)]="user.email" [readonly]="!isCurrentUser"></ion-input>
+            <ion-button (click)="updateEmail()" *ngIf="originalUser.email != user.email" size="small" fill="clear"
+              color="success">save</ion-button>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-list-header class="list-header">
+        Coach Information
+      </ion-list-header>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list lines="full">
+          <ion-item>
+            <ion-avatar slot="start">
+              <img [src]="coach.photoUrl">
+            </ion-avatar>
+            <ion-label>{{ "Coach: " +  coach.fname + " " + coach.lname}}
+              <p> {{ coach.email }} </p>
+            </ion-label>
+            <ion-button *ngIf="isCurrentUser" (click)="changeCoach()" size="small" fill="clear">Change Coach
+            </ion-button>
+          </ion-item>
+          <ion-item>
+            <ion-label class="ion-text-capitalize">
+              Sport: {{ coach.sport}}
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="user?.role != 'headCoach'">
+    <ion-row>
+      <ion-list-header class="list-header">Create your own Team</ion-list-header>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list lines="full">
+          <ion-item>
+            <ion-label> Become a Head Coach
+              <p>You will be removed for the team you are currently on</p>
+            </ion-label>
+            <ion-button (click)="createTeam()" fill="clear" size="small">Create Team</ion-button>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

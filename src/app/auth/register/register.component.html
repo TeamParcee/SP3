@@ -1,0 +1,31 @@
+<ion-grid fixed>
+  <div class="register-form-container">
+    <div class="register-form-header">
+
+      <ion-buttons slot="start">
+        <ion-button (click)="updateViewEmit('login')" fill="clear" class="back-btn">
+          <ion-icon class="back-btn" name="chevron-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      Create an Account
+    </div>
+    <ion-item>
+      <ion-icon name="mail-outline" slot="end"></ion-icon>
+      <ion-input [(ngModel)]="user.email" #email="ngModel" required email  placeholder="Email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="mail-outline" slot="end"></ion-icon>
+      <ion-input placeholder="Confirm Email" [(ngModel)]="user.cemail" required email #cemail="ngModel"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="lock-closed-outline" slot="end"></ion-icon>
+      <ion-input type="password" [(ngModel)]="user.pword" #pword="ngModel" required minlength="6" placeholder="Password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="lock-closed-outline" slot="end"></ion-icon>
+      <ion-input type="password" #cpword="ngModel" [(ngModel)]="user.cpword" required minlength="6" placeholder="Confirm Password"></ion-input>
+    </ion-item>
+    <ion-button (click)="register()" class="register-btn" expand="full">Create Account</ion-button>
+    <div class="ion-text-center ion-padding">By creating an account you agree you our <b>Terms and Conditions</b></div>
+  </div>
+</ion-grid>

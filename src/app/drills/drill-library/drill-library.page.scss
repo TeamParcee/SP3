@@ -1,0 +1,22 @@
+.search-bar-container{
+    max-width: 700px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.video-poster{
+    background: black;
+    display: flex;
+img{
+    height: 170px;
+    margin: auto;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+}
+
+.drill-col{
+    cursor: pointer;
+}

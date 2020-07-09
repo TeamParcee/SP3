@@ -1,0 +1,138 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-title>Complete Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid *ngIf="step == '1'" fixed>
+    <ion-row>
+      <ion-col>
+        <div class="header-label">What is your name?</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list lines="full">
+          <ion-item>
+            <ion-input minlength="2" required [(ngModel)]="user.fname" #fname="ngModel" placeholder="First Name">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input minlength="2" required [(ngModel)]="user.lname" #lname="ngModel" placeholder="Last Name">
+            </ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button [disabled]="fname.invalid || lname.invalid" (click)="updateStep('2', null)" fill="clear">Next</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="step == '2'" fixed>
+    <ion-row>
+      <ion-col>
+        <div class="header-label">What is your role on your team?</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="updateStep('1', null)" fill="clear">Back</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="updateStep('3b1', 'headCoach')" fill="clear">Head Coach</ion-button>
+        <ion-button (click)="updateStep('3a1', 'coach')" fill="clear">Coach</ion-button>
+        <ion-button (click)="updateStep('3a1', 'member')" fill="clear">Team Member</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid *ngIf="step == '3a1'" fixed>
+    <ion-row>
+      <ion-col>
+        <div class="header-label">Select a Coach?</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="updateStep('2', null)" fill="clear">Back</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-searchbar></ion-searchbar>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Coach Adiontae Gerron</ion-label>
+            <ion-button (click)="selectCoach()" fill="clear">Select Coach</ion-button>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid *ngIf="step == '3b1'" fixed>
+    <ion-row>
+      <ion-col>
+        <div class="header-label">What is your sport?</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="updateStep('2', null)" fill="clear">Back</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="updateStep('3b2', 'football')" fill="clear">Football</ion-button>
+        <ion-button (click)="updateStep('3b2', 'basketball')" fill="clear">Basketball</ion-button>
+        <ion-button (click)="updateStep('3b2', 'volleyball')" fill="clear">Volleyball</ion-button>
+        <ion-button (click)="updateStep('3b2', 'baseball')" fill="clear">Baseball</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="step == '3b2'" fixed>
+    <ion-row>
+      <ion-col>
+        <div class="header-label">What is the passcode for your team?</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="updateStep('3b1', null)" fill="clear">Back</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="user.teamCode" placeholder="Team Passcode"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="save()" fill="clear">Complete</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+
+</ion-content>

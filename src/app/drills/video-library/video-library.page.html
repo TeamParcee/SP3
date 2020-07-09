@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Add Video</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-segment (ionChange)="updateView($event)" value="library">
+    <ion-segment-button value="library">
+      Video Library
+    </ion-segment-button>
+    <ion-segment-button value="youtube">
+      From Youtube
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf='view == "library"' class="video-library">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <label for="video" class="uploadVideoBtn">Upload Video</label>
+          <input (change)="uploadVideo($event)" id="video" type="file" accept="video/*" style="display: none;">
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="showSkeleton">
+        <ion-col *ngFor="let e of loadingArray" size-md="4">
+          <ion-skeleton-text animate class="loading-poster"></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col *ngFor="let video of videos" size-md="4">
+          <img (click)="selectVideo(video)" [src]="video.poster">
+          <ion-item lines="none">
+            <ion-button (click)="removeVideo(video)" size="small" fill="clear">
+              Remove Video <ion-icon slot="start" name="close"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div *ngIf="view == 'youtube'" class="youtube-form">
+    <ion-item>
+      <ion-label position="stacked">Youtube URL</ion-label>
+      <ion-input (ionChange)="checkUrl()" [(ngModel)]="youtubeUrl"
+        placeholder="https://www.youtube.com/watch?v=yyDUC1LUXSU"></ion-input>
+    </ion-item>
+    <iframe *ngIf="trustedVideoUrl" class="video-player" width="420" height="345" [src]="trustedVideoUrl">
+    </iframe>
+    <ion-button (click)="saveYoutubeVideo()" *ngIf="trustedVideoUrl" expand="full">Select Video</ion-button>
+  </div>
+</ion-content>

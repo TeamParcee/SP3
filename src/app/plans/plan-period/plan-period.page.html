@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/plan"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Period</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid fixed>
+    <ion-item>
+      <ion-label position="stacked">Perod Name</ion-label>
+      <ion-input placeholder="Tackle Work"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Duration (in minutes)</ion-label>
+      <ion-input placeholder="25" type="number"></ion-input>
+    </ion-item>
+
+    <ion-list-header class="ion-margin-top list-header">
+      <ion-label>Player Groups </ion-label>
+      <ion-button (click)="addGroup($event)">
+        Add
+        <ion-icon name="add" slot="start"></ion-icon>
+      </ion-button>
+    </ion-list-header>
+
+    <ion-row>
+      <ion-col size-xs="12" size-md="4" size-xl="4">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="card-header">
+              <ion-label>Running Backs</ion-label>
+              <ion-button fill="clear">
+                <ion-icon name="close"></ion-icon>
+              </ion-button>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button (click)="addDrill()" fill="clear">
+              <ion-icon name="add" slot="start"></ion-icon>
+              Add Drill
+            </ion-button>
+            <ion-list lines="full">
+              <ion-item (click)="viewDrill()" detail>
+                Cone Drill
+                <ion-icon slot="start" name="remove-outline"></ion-icon>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

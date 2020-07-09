@@ -1,0 +1,19 @@
+<ion-grid fixed>
+  <div class="login-form-container">
+    <div class="login-form-header">
+      Welcome Back
+    </div>
+    <ion-item>
+      <ion-icon name="mail-outline" slot="end"></ion-icon>
+      <ion-input required email type="email" [(ngModel)]="user.email" #email="ngModel" placeholder="Email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="lock-closed-outline" slot="end"></ion-icon>
+      <ion-input required email minlength="6" type="password" #pword="ngModel" [(ngModel)]="user.pword" placeholder="Password"></ion-input>
+    </ion-item>
+    <div (click)="updateViewEmit('forgot-password')" class="forgot-password-btn">Forgot Password</div>
+    <ion-button (click)="login()" class="login-btn" expand="full">Login</ion-button>
+    <ion-button (click)="updateViewEmit('register')" fill="clear" class="register-btn" expand="full">Create an Account
+    </ion-button>
+  </div>
+</ion-grid>
